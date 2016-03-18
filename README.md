@@ -36,6 +36,7 @@ result will either be:
 
 Depending on the size of the Range passed to the map_or_pmap_or_apmap function, the
 work can be accomplished in one of three ways:
+
 1. For small arrays <= 100 elements in size, it just runs in process synchronously
 1. For medium arrays <= 1000 elements in size, it runs parallel map (multiprocess), but synchronously
 1. For anything bigger it runs parallel map, but does it asynchronously and send a response when it
