@@ -8,7 +8,7 @@ The cool thing about this code is, as a user of the function (the caller) you do
 which version it will use. In most other languages (like Javascript), this is an
 exceptionally bad idea, but in Elixir this is actually a common way to solve problems.
 
-`"Javascript with Promises", by Daniel Parker has this warning:`
+`"Javascript with Promises"`, by Daniel Parker has this warning:
 ```
 WARNING
 Functions that invoke a callback synchronously in some cases and asynchronously in
@@ -40,10 +40,24 @@ Depending on the size of the Range passed to the map_or_pmap_or_apmap function, 
 work can be accomplished in one of three ways:
 
 1. For small arrays <= 100 elements in size, it just runs in process synchronously
-1. For medium arrays <= 1000 elements in size, it runs parallel map (multiprocess), but synchronously
-1. For anything bigger it runs parallel map, but does it asynchronously and send a response when it
+1. For medium arrays <= 1000 elements in size, it runs parallel map (multiprocess), but synchronously to
+the caller.
+1. For anything bigger it runs parallel map, but does it asynchronously and sends a response when it
 it done with the work.
 
+Waiting for the delayed result is accomplished by waiting for a message from
+the <b>pid</b>.
+
+```
+receive do
+  { ^pid, result } -> IO.puts("Results have ready. Yay!:")
+                      IO.inspect(result)
+end
+```
+
+Improvements: Probably should have the result actually be {:ok, array} so that
+the asynchronous version would be able to return a failure if it wasn't able
+to run the calculation.
 
 # How to run
 ```
