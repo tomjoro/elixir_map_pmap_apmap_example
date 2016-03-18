@@ -15,13 +15,12 @@ Functions that invoke a callback synchronously in some cases and asynchronously 
 others create forks in the execution path that make your code less predictable.
 ```
 
-But we ignore this warning in Elixir :) , because there is only one execution path
-for a delayed job - messages which your process will handle when it wants to.
+But, in Elixir, we laugh at this warning :) , because there is only one execution path
+for an asynchronous job: messages sent to your process which can then handle when it wants to.
 
 For example, the Logger works like this in Elixir. If the backlog of things to log is
 small, then it completes synchronously, otherwise it will decide to switch to
 asynchronous mode, just like magic.
-
 
 Here's what the code invoked looks like:
 ```
