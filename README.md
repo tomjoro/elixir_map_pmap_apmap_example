@@ -41,8 +41,10 @@ work can be accomplished in one of three ways:
 1. For anything bigger it runs parallel map, but does it asynchronously and send a response when it
 it done with the work.
 
+
+# How to run
 ```
-Parallel.handle_result(Parallel.map_or_pmap_or_apmap((0..10), fn(x) -> x * x end))
-Parallel.handle_result(Parallel.map_or_pmap_or_apmap((0..150), fn(x) -> x * x end))
-Parallel.handle_result(Parallel.map_or_pmap_or_apmap((0..1000000), fn(x) -> x * x end))
+iex
+iex> c("parallel.ex")
+iex> Parallel.run_tests
 ```
