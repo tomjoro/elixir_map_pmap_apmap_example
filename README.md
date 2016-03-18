@@ -1,12 +1,14 @@
 # elixir_map_pmap_apmap_example
-Example of how to put asynchronous behavior behind an API in Elixir, using Parallel Map. Using map, pmap and an asynchronous pmap.
 
+
+Example of how to make a function, when called can either perform synchronously or
+asynchronously. A  <b>map</b> function is used as the example.
 
 The cool thing about this code is, as a user of the function (the caller) you don't know
 which version it will use. In most other languages (like Javascript), this is an
 exceptionally bad idea, but in Elixir this is actually a common way to solve problems.
 
-"Javascript with Promises", by Daniel Parker has this warning:
+`"Javascript with Promises", by Daniel Parker has this warning:`
 ```
 WARNING
 Functions that invoke a callback synchronously in some cases and asynchronously in
