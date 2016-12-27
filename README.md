@@ -55,6 +55,20 @@ the caller.
 1. For anything bigger it runs parallel map, but does it asynchronously and sends a response when it
 it done with the work.
 
+The idea behind this is simple: If the result is going to be calculatable quicly, then I'll wait for it.
+Otherwise notifiy me when the result is ready.
+
+For example, you have a website that does some calculation for the user. If the calculation result is 
+obtainable quickly, then just do it and return it to the user. If it looks like it is going to take a while, 
+then tell the user "please check back in a few seconds" - or better yet, send them a message via websockets
+when the result is ready.
+
+This same technique works for things like processing queues. If nothing is ahead of your task in a queue, 
+then you can run it immediately. If the queue is long, then tell the user to check back later. This is actually
+how the Logger works. You don't want your code to slow down, just because the disk is temporarily slow, but most
+of the time you would like to know that the logger completed your task.
+
+
 Waiting for the delayed result is accomplished by waiting for a message from
 the <b>pid</b>.
 
