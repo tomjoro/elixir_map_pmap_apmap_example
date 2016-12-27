@@ -20,7 +20,7 @@ It doesn't really matter if it is run synchronously or asynchronously. But what 
 That's easy, just spawn a process, give it the function, and have the process send you a message when it is done.
 What if you don't want to wait for the answer? If you don't want to wait for the answer, then don't wait.
 Summary:
-  * If you pass a function to some other piece of code, yjrm it can be run synchronously or asynchronously.
+  * If you pass a function to some other piece of code, it can be run synchronously or asynchronously.
   * If you need an immediate result, then it's either run in-process (synchronous), or in another process, but you'll need to wait.
   * You decide when to wait, and what to wait for. You can ignore waiting, or combine waits, etc.
   * Data is immutable, so the function can't change your context that the function was created in.
