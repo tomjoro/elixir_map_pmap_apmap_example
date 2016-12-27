@@ -15,7 +15,18 @@ Functions that invoke a callback synchronously in some cases and asynchronously 
 others create forks in the execution path that make your code less predictable.
 ```
 
-But, in Elixir, we laugh at this warning :) , because there is only one execution path
+Elixir is side effect free,  and so the anonymous function cannot affect the context it is run in. 
+It doesn't really matter if it is run synchronously or asynchronously. But what if you want to run it asynchronously? 
+That's easy, just spawn a process, give it the function, and have the process send you a message when it is done.
+What if you don't want to wait for the answer. If you don't want to wait for the answer, then don't wait.
+Summary:
+  * If you pass a function to some other piece of code, yjrm it can be run synchronously or asynchronously.
+  * If you need an immediate result, then it's either run in-process (synchronous), or in another process, but you'll need to wait.
+  * You decide when to wait, and what to wait for. You can ignore waiting, or combine waits, etc.
+  * Data is immutable, so the function can't change your context that the function was created in.
+
+
+there is only one execution path
 for an asynchronous job: messages sent to your process which can then handle when it wants to.
 
 For example, the Logger works like this in Elixir. If the backlog of things to log is
