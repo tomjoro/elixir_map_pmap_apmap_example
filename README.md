@@ -18,7 +18,7 @@ others create forks in the execution path that make your code less predictable.
 Elixir is side effect free,  and so the anonymous function cannot affect the context it is run in. 
 It doesn't really matter if it is run synchronously or asynchronously. But what if you want to run it asynchronously? 
 That's easy, just spawn a process, give it the function, and have the process send you a message when it is done.
-What if you don't want to wait for the answer. If you don't want to wait for the answer, then don't wait.
+What if you don't want to wait for the answer? If you don't want to wait for the answer, then don't wait.
 Summary:
   * If you pass a function to some other piece of code, yjrm it can be run synchronously or asynchronously.
   * If you need an immediate result, then it's either run in-process (synchronous), or in another process, but you'll need to wait.
